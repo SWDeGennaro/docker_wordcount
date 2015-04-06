@@ -1,0 +1,44 @@
+zookeeper:
+  image: oddpoet/zookeeper
+  hostname: zookeeper
+  command:
+    - "2181"
+  ports:
+    - "2181:2181"
+kafka:
+  image: wurstmeister/kafka
+  hostname: kafka
+  ports:
+    - "9092:9092"
+  links: 
+    - zookeeper:zk
+  environment:
+    KAFKA_ADVERTISED_PORT: 9092
+producer:
+    build: producer/.
+    ports: 
+     - "5000:5000"
+    volumes:
+      - producer/.:/code
+    links:
+     - redis
+     - kafka
+consumer:
+    build: consumer/.
+    ports: 
+     - "5001:5000"
+    volumes:
+      - consumer/.:/code
+    links:
+     - redis
+     - kafka
+website:
+    build: website/.
+    ports:
+     - "5002:80"
+    volumes:
+      - website/src.:/usr/share/nginx/html
+    links:
+     - consumer
+redis:
+    image: redis

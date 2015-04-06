@@ -1,0 +1,22 @@
+
+#open shell in kafka container 
+docker exec -t -i fd4cd0db4aa2 /bin/bash
+
+cd /opt/kafka/bin
+
+#create topic
+kafka-topics.sh --zookeeper $DOCKERENV_ZOOKEEPER_1_PORT_2181_TCP_ADDR:2181 --create --topic words-topic --partitions 1 --replication-factor 1
+
+#list topics
+./kafka-topics.sh --zookeeper $DOCKERENV_ZOOKEEPER_1_PORT_2181_TCP_ADDR:2181 --list
+
+#describe topic
+./kafka-topics.sh --zookeeper $DOCKERENV_ZOOKEEPER_1_PORT_2181_TCP_ADDR:2181 --describe --topic words-topic
+
+#producer
+./kafka-console-producer.sh --broker-list localhost:9092 --sync --topic words-topic
+
+#enter some words
+
+#consumer 
+./kafka-console-consumer.sh --zookeeper $DOCKERENV_ZOOKEEPER_1_PORT_2181_TCP_ADDR:2181 --topic words-topic --from-beginning
