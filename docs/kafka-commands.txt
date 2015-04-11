@@ -21,3 +21,9 @@ $KAFKA_HOME/bin/kafka-topics.sh --zookeeper zk:2181 --create --topic words-topic
 
 #consumer 
 ./kafka-console-consumer.sh --zookeeper zk:2181 --topic words-topic --from-beginning
+
+#list topics
+$KAFKA_HOME/bin/kafka-topics.sh --zookeeper zk:2181 --list
+
+#describe topic 
+$KAFKA_HOME/bin/kafka-topics.sh --zookeeper zk:2181 --describe --topic words-topic

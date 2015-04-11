@@ -3,7 +3,8 @@ from kafka import SimpleProducer, KafkaClient
 import os
 
 app = Flask(__name__)
-kafka = KafkaClient(os.environ['KAFKA_1_PORT_9092_TCP_ADDR'] + ':9092')
+#kafka = KafkaClient(os.environ['KAFKA_1_PORT_9092_TCP_ADDR'] + ':9092')
+kafka = KafkaClient('kafka:9092')
 producer = SimpleProducer(kafka)
 topic = "word-topic"
 

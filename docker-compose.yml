@@ -34,11 +34,12 @@ consumer:
      - kafka
 website:
     build: website/.
-    ports:
-     - "5002:80"
+    ports: 
+     - "5002:5000"
     volumes:
-      - website/src.:/usr/share/nginx/html
+      - website/.:/code
     links:
-     - consumer
+     - redis
+
 redis:
     image: redis
