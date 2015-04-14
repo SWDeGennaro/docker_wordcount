@@ -40,6 +40,5 @@ website:
       - website/.:/code
     links:
      - redis
-
 redis:
     image: redis
