@@ -15,7 +15,7 @@ from config import *
 #kafka = KafkaClient(os.environ['KAFKA_1_PORT_9092_TCP_ADDR'] + ':9092')
 kafka = KafkaClient('kafka:9092')
 producer = SimpleProducer(kafka)
-topic = "word-topic"
+topic = "hashtag-topic"
 
 class TweetStreamListener(StreamListener):
 
